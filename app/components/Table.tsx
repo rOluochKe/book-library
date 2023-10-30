@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { BiSolidEdit } from 'react-icons/bi';
 import { GrView } from 'react-icons/gr';
 import { MdDelete } from 'react-icons/md';
+import { toast } from 'react-toastify';
 import ModalContainer from './ModalContainer';
 import BookForm from './BookForm';
 import BorrowForm from './BorrowForm';
@@ -68,6 +69,7 @@ const Table: React.FC<TableProps<any>> = ({ data, columns, context }) => {
     // You can add your API call or state updates here to delete the item.
 
     // After successful deletion, close the modal
+    toast.success('Deletion was successful!');
     closeModal();
   };
 
@@ -79,6 +81,7 @@ const Table: React.FC<TableProps<any>> = ({ data, columns, context }) => {
     // You can add your API call or state updates here to save the new book.
 
     // After successful submission, close the modal
+    toast.success('Book added successfully!');
     closeModal();
   };
 
@@ -89,6 +92,7 @@ const Table: React.FC<TableProps<any>> = ({ data, columns, context }) => {
     // You can add your API call or state updates here to save the new borrow.
 
     // After successful submission, close the modal
+    toast.success('Borrowing was successful!');
     closeModal();
   };
 

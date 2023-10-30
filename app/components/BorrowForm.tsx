@@ -54,7 +54,7 @@ const BorrowForm: React.FC<BorrowFormProps> = ({ onSubmit, defaultValues }) => {
       </div>
 
       <div>
-        <label className="block w-full mb-1">Borrower ID</label>
+        <label className="block w-full mb-1">Borrower</label>
         <Controller
           name="borrower"
           control={control}
