@@ -4,3 +4,9 @@ export interface Book {
   author: string;
   year: number;
 }
+
+export interface BookFormData {
+  title: string;
+  author: string;
+  year: number;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import Paragraph from './Paragraph';
 
 interface ViewDetailProps<T> {
   data: T;
@@ -6,35 +7,33 @@ interface ViewDetailProps<T> {
   onClose: () => void;
 }
 
-const ViewDetail: React.FC<ViewDetailProps<any>> = ({ data, context, onClose }) => {
+const ViewDetail: React.FC<ViewDetailProps<any>> = ({ data, context }) => {
   return (
-    <div className="bg-white p-4 rounded">
-      <h2 className="text-2xl font-bold mb-4">
-        {`Details of ${context === 'books' ? 'Book' : 'Borrow'}`}
-      </h2>
-
+    <div className="bg-white rounded">
       {context === 'books' && (
         <div>
-          <p>Title: {data.title}</p>
-          <p>Author: {data.author}</p>
-          <p>Year: {data.year}</p>
+          <div className='mb-4'>
+            <Paragraph name='Title' property={data.title} />
+            <Paragraph name='Author' property={data.author} />
+            <Paragraph name='Year' property={data.year} />
+          </div>
+
+          <div>
+            <h3 className='font-medium mb-2'>This book has been borrowed by:</h3>
+            <ol>
+              <li>John Doe</li>
+            </ol>
+          </div>
         </div>
       )}
 
       {context === 'borrows' && (
         <div>
-          <p>Borrow ID: {data.borrow_id}</p>
-          <p>Book ID: {data.book_id}</p>
-          <p>Borrower ID: {data.borrower_id}</p>
+          <Paragraph name='Borrow ID' property={data.borrow_id} />
+          <Paragraph name='Book ID' property={data.book_id} />
+          <Paragraph name='Borrower' property={data.borrower} />
         </div>
       )}
-
-      <button
-        onClick={onClose}
-        className="bg-blue-500 text-white px-2 py-1 rounded mt-4"
-      >
-        Close
-      </button>
     </div>
   );
 };

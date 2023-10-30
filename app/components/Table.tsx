@@ -1,22 +1,15 @@
 "use client";
 
 import React, { useState } from 'react';
+import { BiSolidEdit } from 'react-icons/bi';
+import { GrView } from 'react-icons/gr';
+import { MdDelete } from 'react-icons/md';
 import ModalContainer from './ModalContainer';
 import BookForm from './BookForm';
 import BorrowForm from './BorrowForm';
 import ViewDetail from './ViewDetail';
-
-interface BookFormData {
-  title: string;
-  author: string;
-  year: number;
-}
-
-interface BorrowFormData {
-  borrow_id: number;
-  book_id: number;
-  borrower_id: number;
-}
+import { BookFormData } from '../types/Book';
+import { BorrowFormData } from '../types/Borrow';
 
 interface TableProps<T> {
   data: T[];
@@ -55,8 +48,14 @@ const Table: React.FC<TableProps<any>> = ({ data, columns, context }) => {
     openModal(
       <div>
         <p>Are you sure you want to delete this {context === 'books' ? 'book' : 'borrow'}?</p>
-        <button onClick={() => deleteItem(item)}>Yes, Delete</button>
-        <button onClick={closeModal}>Cancel</button>
+        <div className='flex justify-between items-center mt-3'>
+          <button
+            className='bg-blue-500 text-white px-2 py-1 rounded'
+            onClick={() => deleteItem(item)}>Yes, Delete</button>
+          <button
+            className='bg-transparent text-black border border-black-600 px-2 py-1 rounded'
+            onClick={closeModal}>Cancel</button>
+        </div>
       </div>,
       ActionType.Delete
     );
@@ -111,7 +110,7 @@ const Table: React.FC<TableProps<any>> = ({ data, columns, context }) => {
           }}
           className="bg-green-500 text-white px-2 py-1 rounded"
         >
-          {`Add New ${context === 'books' ? 'Book' : 'Borrow'}`}
+          {`Add ${context === 'books' ? 'Book' : 'Borrow'}`}
         </button>
       </div>
 
@@ -142,21 +141,21 @@ const Table: React.FC<TableProps<any>> = ({ data, columns, context }) => {
                       ActionType.Update
                     );
                   }}
-                  className="mr-2 bg-blue-500 text-white px-2 py-1 rounded"
+                  className="mr-2 px-2 py-1 rounded"
                 >
-                  {`Update ${context === 'books' ? 'Book' : 'Borrow'}`}
+                  <BiSolidEdit />
                 </button>
                 <button
                   onClick={() => handleViewDetail(item)}
-                  className="mr-2 bg-green-500 text-white px-2 py-1 rounded"
+                  className="mr-2 px-2 py-1 rounded"
                 >
-                  {`View Detail of ${context === 'books' ? 'Book' : 'Borrow'}`}
+                  <GrView />
                 </button>
                 <button
                   onClick={() => confirmDelete(item)}
-                  className="bg-red-500 text-white px-2 py-1 rounded"
+                  className="px-2 py-1 rounded"
                 >
-                  {`Delete ${context === 'books' ? 'Book' : 'Borrow'}`}
+                  <MdDelete />
                 </button>
               </td>
             </tr>
